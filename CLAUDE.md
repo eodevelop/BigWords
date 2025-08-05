@@ -38,7 +38,26 @@ flutter build ios        # Build iOS (requires macOS)
 
 ## Project Structure
 
-- `lib/main.dart` - Main application entry point with basic counter app
+```
+lib/
+├── main.dart                 # App entry point
+├── core/
+│   ├── service/             # State management & business logic services
+│   └── utils/               # Utility functions and helpers
+├── data/
+│   ├── enums/               # Type-safe enumerations
+│   ├── models/              # Data classes and entity models
+│   ├── repositories/        # Data access layer (Repository pattern)
+│   ├── initialization/      # Default data and initialization
+│   └── theme/               # UI themes and styling
+└── ui/
+    ├── screens/             # Main application screens
+    ├── widgets/             # Reusable UI components
+    └── dialog/              # Modal dialogs and overlays
+```
+
+### High-level Structure
+- `lib/main.dart` - Main application entry point
 - `test/widget_test.dart` - Widget tests for the main app
 - `pubspec.yaml` - Project configuration and dependencies
 - `analysis_options.yaml` - Dart analyzer configuration using flutter_lints
