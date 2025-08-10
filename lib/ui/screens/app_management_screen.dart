@@ -91,7 +91,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
     LauncherSettings settings,
   ) {
     final availableApps = allApps.where((app) {
-      return !selectedApps.any((selected) => selected.packageName == app.name);
+      return !selectedApps.any((selected) => selected.packageName == app.packageName);
     }).toList();
     
     return ListView(
@@ -165,7 +165,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
         children: apps.map((app) {
           return _buildAppTile(
             app: AppInfo(
-              packageName: app.name,
+              packageName: app.packageName,
               appName: app.name,
               iconPath: null,
               position: selectedApps.length,
@@ -175,7 +175,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
             onTap: () {
               setState(() {
                 selectedApps.add(AppInfo(
-                  packageName: app.name,
+                  packageName: app.packageName,
                   appName: app.name,
                   iconPath: null,
                   position: selectedApps.length,

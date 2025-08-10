@@ -34,7 +34,7 @@ class AppIconWidget extends ConsumerWidget {
                 installed.AppInfo? foundApp;
                 try {
                   foundApp = apps.firstWhere(
-                    (a) => a.name == appInfo.packageName,
+                    (a) => a.packageName == appInfo.packageName,
                   );
                 } catch (e) {
                   foundApp = null;

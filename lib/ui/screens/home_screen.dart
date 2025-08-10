@@ -86,7 +86,7 @@ class HomeScreen extends ConsumerWidget {
         final app = apps[index];
         return AppIconWidget(
           appInfo: app,
-          onTap: () => _launchApp(ref, app.packageName),
+          onTap: () => _launchApp(context, ref, app.packageName),
         );
       },
     );
@@ -161,8 +161,19 @@ class HomeScreen extends ConsumerWidget {
     );
   }
   
-  void _launchApp(WidgetRef ref, String packageName) {
+  void _launchApp(BuildContext context, WidgetRef ref, String packageName) async {
     final appService = getIt<AppService>();
-    appService.launchApp(packageName);
+    try {
+      await appService.launchApp(packageName);
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('앱을 실행할 수 없습니다: $packageName'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 }

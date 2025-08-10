@@ -17,7 +17,19 @@ class AppRepository {
     }
     
     final List<dynamic> appsList = json.decode(appsJson);
-    return appsList.map((json) => AppInfo.fromJson(json)).toList();
+    final apps = appsList.map((json) => AppInfo.fromJson(json)).toList();
+    
+    // 잘못된 데이터 검증 및 초기화
+    bool hasInvalidData = apps.any((app) => 
+      app.packageName == app.appName || 
+      !app.packageName.contains('.'));
+    
+    if (hasInvalidData) {
+      await _prefs.remove(_appsKey);
+      return _getDefaultApps();
+    }
+    
+    return apps;
   }
   
   Future<void> saveSelectedApps(List<AppInfo> apps) async {
@@ -36,13 +48,13 @@ class AppRepository {
   List<AppInfo> _getDefaultApps() {
     return [
       const AppInfo(
-        packageName: 'com.android.dialer',
+        packageName: 'com.samsung.android.dialer',
         appName: '전화',
         iconPath: null,
         position: 0,
       ),
       const AppInfo(
-        packageName: 'com.android.mms',
+        packageName: 'com.samsung.android.messaging',
         appName: '메시지',
         iconPath: null,
         position: 1,
@@ -54,7 +66,7 @@ class AppRepository {
         position: 2,
       ),
       const AppInfo(
-        packageName: 'com.android.camera',
+        packageName: 'com.sec.android.app.camera',
         appName: '카메라',
         iconPath: null,
         position: 3,
