@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:installed_apps/installed_apps.dart';
 import 'package:installed_apps/app_info.dart' as installed;
 import '../../data/models/app_info.dart';
@@ -23,28 +22,14 @@ class AppService {
   
   Future<void> launchApp(String packageName) async {
     try {
-      if (kDebugMode) {
-        print('Attempting to launch app: $packageName');
-      }
-      
       final isAppInstalled = await InstalledApps.isAppInstalled(packageName);
       
-      if (kDebugMode) {
-        print('App installed check for $packageName: $isAppInstalled');
-      }
-      
       if (isAppInstalled == true) {
-        final result = await InstalledApps.startApp(packageName);
-        if (kDebugMode) {
-          print('App launch result for $packageName: $result');
-        }
+        await InstalledApps.startApp(packageName);
       } else {
         throw Exception('App with package name $packageName is not installed');
       }
     } catch (e) {
-      if (kDebugMode) {
-        print('Error launching app $packageName: $e');
-      }
       rethrow;
     }
   }

@@ -166,14 +166,7 @@ class HomeScreen extends ConsumerWidget {
     try {
       await appService.launchApp(packageName);
     } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('앱을 실행할 수 없습니다: $packageName'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      // Silent fail
     }
   }
 }
