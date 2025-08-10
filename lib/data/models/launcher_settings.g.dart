@@ -12,7 +12,7 @@ _$LauncherSettingsImpl _$$LauncherSettingsImplFromJson(
   fontSize: (json['fontSize'] as num?)?.toDouble() ?? 24.0,
   iconSize: (json['iconSize'] as num?)?.toDouble() ?? 80.0,
   isDarkMode: json['isDarkMode'] as bool? ?? false,
-  gridColumns: (json['gridColumns'] as num?)?.toInt() ?? 4,
+  gridColumns: (json['gridColumns'] as num?)?.toInt() ?? 2,
   showAppNames: json['showAppNames'] as bool? ?? true,
 );
 

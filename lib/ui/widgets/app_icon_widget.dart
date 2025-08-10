@@ -30,19 +30,17 @@ class AppIconWidget extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildAppIcon(context, ref, settings, iconCache),
-            if (settings.showAppNames) ...[
-              const SizedBox(height: 8),
-              Text(
-                appInfo.appName,
-                style: TextStyle(
-                  fontSize: settings.fontSize * 0.6,
-                  color: settings.isDarkMode ? Colors.white : Colors.black,
-                ),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+            const SizedBox(height: 8),
+            Text(
+              appInfo.appName,
+              style: TextStyle(
+                fontSize: settings.fontSize * 0.6,
+                color: settings.isDarkMode ? Colors.white : Colors.black,
               ),
-            ],
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ],
         ),
       ),

@@ -184,7 +184,7 @@ class _$LauncherSettingsImpl implements _LauncherSettings {
     this.fontSize = 24.0,
     this.iconSize = 80.0,
     this.isDarkMode = false,
-    this.gridColumns = 4,
+    this.gridColumns = 2,
     this.showAppNames = true,
   });
 

@@ -7,12 +7,12 @@ part 'launcher_settings.g.dart';
 class LauncherSettings with _$LauncherSettings {
   const factory LauncherSettings({
     @Default(24.0) double fontSize,
-    @Default(80.0) double iconSize,
+    @Default(120.0) double iconSize,
     @Default(false) bool isDarkMode,
-    @Default(4) int gridColumns,
+    @Default(2) int gridColumns,
     @Default(true) bool showAppNames,
   }) = _LauncherSettings;
 
-  factory LauncherSettings.fromJson(Map<String, dynamic> json) => 
+  factory LauncherSettings.fromJson(Map<String, dynamic> json) =>
       _$LauncherSettingsFromJson(json);
 }

@@ -32,14 +32,4 @@ class SettingsNotifier extends StateNotifier<LauncherSettings> {
     state = state.copyWith(isDarkMode: !state.isDarkMode);
     await _settingsService.saveSettings(state);
   }
-  
-  Future<void> updateGridColumns(int columns) async {
-    state = state.copyWith(gridColumns: columns);
-    await _settingsService.saveSettings(state);
-  }
-  
-  Future<void> toggleShowAppNames() async {
-    state = state.copyWith(showAppNames: !state.showAppNames);
-    await _settingsService.saveSettings(state);
-  }
 }
