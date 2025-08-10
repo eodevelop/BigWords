@@ -6,6 +6,7 @@ import '../../core/providers/app_provider.dart';
 import '../../core/providers/settings_provider.dart';
 import '../../data/models/app_info.dart';
 import '../../data/models/launcher_settings.dart';
+import '../../l10n/app_localizations.dart';
 
 class AppManagementScreen extends ConsumerStatefulWidget {
   const AppManagementScreen({super.key});
@@ -34,14 +35,14 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
       appBar: AppBar(
         backgroundColor: settings.isDarkMode ? Colors.grey[900] : Colors.blue,
         title: Text(
-          '앱 관리',
+          AppLocalizations.of(context).appManagement,
           style: TextStyle(fontSize: settings.fontSize),
         ),
         actions: [
           TextButton(
             onPressed: () => _saveChanges(context),
             child: Text(
-              '완료',
+              AppLocalizations.of(context).complete,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: settings.fontSize * 0.7,
@@ -61,7 +62,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (_, __) => Center(
               child: Text(
-                '앱 목록을 불러올 수 없습니다',
+                AppLocalizations.of(context).cannotLoadAppList,
                 style: TextStyle(
                   fontSize: settings.fontSize,
                   color: settings.isDarkMode ? Colors.white : Colors.black,
@@ -73,7 +74,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, __) => Center(
           child: Text(
-            '오류가 발생했습니다',
+            AppLocalizations.of(context).errorOccurred,
             style: TextStyle(
               fontSize: settings.fontSize,
               color: settings.isDarkMode ? Colors.white : Colors.black,
@@ -102,11 +103,11 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        _buildSectionTitle('메인 화면 앱', settings),
+        _buildSectionTitle(AppLocalizations.of(context).mainScreenApps, settings),
         const SizedBox(height: 8),
         _buildSelectedAppsList(settings),
         const SizedBox(height: 24),
-        _buildSectionTitle('추가 가능한 앱', settings),
+        _buildSectionTitle(AppLocalizations.of(context).availableApps, settings),
         const SizedBox(height: 8),
         _buildAvailableAppsList(availableApps, settings),
       ],
@@ -137,7 +138,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
               padding: const EdgeInsets.all(24),
               child: Center(
                 child: Text(
-                  '선택된 앱이 없습니다',
+                  AppLocalizations.of(context).noAppSelected,
                   style: TextStyle(
                     fontSize: settings.fontSize * 0.7,
                     color: settings.isDarkMode ? Colors.white60 : Colors.black54,

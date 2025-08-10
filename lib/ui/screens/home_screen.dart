@@ -6,6 +6,7 @@ import '../../core/service/dependency_injection.dart';
 import '../../core/service/app_service.dart';
 import '../../data/models/app_info.dart';
 import '../../data/models/launcher_settings.dart';
+import '../../l10n/app_localizations.dart';
 import '../widgets/app_icon_widget.dart';
 import 'app_management_screen.dart';
 import 'settings_screen.dart';
@@ -51,7 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 loading: () => const Center(child: CircularProgressIndicator()),
                 error: (error, stack) => Center(
                   child: Text(
-                    '오류가 발생했습니다',
+                    AppLocalizations.of(context).errorOccurred,
                     style: TextStyle(
                       fontSize: settings.fontSize,
                       color: settings.isDarkMode ? Colors.white : Colors.black,
@@ -122,7 +123,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           _buildBottomButton(
             context,
             icon: Icons.apps,
-            label: '앱 관리',
+            label: AppLocalizations.of(context).appManagement,
             settings: settings,
             onTap: () => Navigator.push(
               context,
@@ -132,7 +133,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           _buildBottomButton(
             context,
             icon: Icons.settings,
-            label: '설정',
+            label: AppLocalizations.of(context).settings,
             settings: settings,
             onTap: () => Navigator.push(
               context,

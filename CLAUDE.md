@@ -50,6 +50,9 @@ lib/
 │   ├── repositories/        # Data access layer (Repository pattern)
 │   ├── initialization/      # Default data and initialization
 │   └── theme/               # UI themes and styling
+├── l10n/                    # Localization files (ARB format)
+│   ├── app_ko.arb           # Korean translations
+│   └── app_en.arb           # English translations
 └── ui/
     ├── screens/             # Main application screens
     ├── widgets/             # Reusable UI components
@@ -67,7 +70,12 @@ lib/
 ## Key Dependencies
 
 - `flutter` - Flutter SDK
+- `flutter_localizations` - Internationalization support
+- `intl` - Localization and date/time formatting
 - `cupertino_icons` - iOS-style icons
+- `flutter_riverpod` - State management
+- `freezed` - Code generation for immutable classes
+- `shared_preferences` - Local storage
 - `flutter_test` - Testing framework
 - `flutter_lints` - Linting rules for Flutter projects
 
@@ -150,6 +158,33 @@ Currently uses the default Flutter application structure:
 ### Testing Guidelines
 - Use Flutter's standard widget testing
 - Use integration tests for each API module
+
+## Localization
+
+The app supports multiple languages using Flutter's built-in localization system:
+
+### Configuration
+- Translations are stored in `lib/l10n/` directory
+- `app_ko.arb` - Korean translations (default)
+- `app_en.arb` - English translations
+- Language is set at build time in `main.dart` (line 37: `locale: const Locale('ko')`)
+
+### Changing App Language
+To release the app in a different language, modify the locale in `lib/main.dart`:
+```dart
+locale: const Locale('en'),  // For English
+locale: const Locale('ko'),  // For Korean (default)
+```
+
+### Adding New Translations
+1. Add new keys to both ARB files (`app_ko.arb` and `app_en.arb`)
+2. Run `flutter gen-l10n` to generate localization code
+3. Use `AppLocalizations.of(context)!.keyName` in widgets
+
+### Localization Commands
+```bash
+flutter gen-l10n         # Generate localization code from ARB files
+```
 
 ## Version Control Guidelines
 

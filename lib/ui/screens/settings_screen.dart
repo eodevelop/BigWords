@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers/settings_provider.dart';
 import '../../data/models/launcher_settings.dart';
+import '../../l10n/app_localizations.dart';
 import 'permission_setup_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -17,17 +18,17 @@ class SettingsScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: settings.isDarkMode ? Colors.grey[900] : Colors.blue,
         title: Text(
-          '설정',
+          AppLocalizations.of(context).settings,
           style: TextStyle(fontSize: settings.fontSize),
         ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _buildSectionTitle('화면 설정', settings),
+          _buildSectionTitle(AppLocalizations.of(context).displaySettings, settings),
           const SizedBox(height: 16),
           _buildSliderTile(
-            title: '글자 크기',
+            title: AppLocalizations.of(context).fontSize,
             value: settings.fontSize,
             min: 18,
             max: 36,
@@ -37,7 +38,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           _buildSliderTile(
-            title: '아이콘 크기',
+            title: AppLocalizations.of(context).iconSize,
             value: settings.iconSize,
             min: 60,
             max: 120,
@@ -46,20 +47,20 @@ class SettingsScreen extends ConsumerWidget {
             settings: settings,
           ),
           const SizedBox(height: 24),
-          _buildSectionTitle('테마 설정', settings),
+          _buildSectionTitle(AppLocalizations.of(context).themeSettings, settings),
           const SizedBox(height: 16),
           _buildSwitchTile(
-            title: '다크 모드',
+            title: AppLocalizations.of(context).darkMode,
             value: settings.isDarkMode,
             onChanged: (_) => settingsNotifier.toggleDarkMode(),
             settings: settings,
           ),
           const SizedBox(height: 24),
-          _buildSectionTitle('시스템 설정', settings),
+          _buildSectionTitle(AppLocalizations.of(context).systemSettings, settings),
           const SizedBox(height: 16),
           _buildNavigationTile(
-            title: '권한 설정',
-            subtitle: '오버레이 및 배터리 최적화 권한',
+            title: AppLocalizations.of(context).permissionSettings,
+            subtitle: AppLocalizations.of(context).permissionSettingsSubtitle,
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const PermissionSetupScreen()),

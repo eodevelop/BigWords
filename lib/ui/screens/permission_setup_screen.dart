@@ -4,6 +4,7 @@ import '../../core/service/dependency_injection.dart';
 import '../../core/service/permission_service.dart';
 import '../../core/providers/settings_provider.dart';
 import '../../data/models/launcher_settings.dart';
+import '../../l10n/app_localizations.dart';
 
 class PermissionSetupScreen extends ConsumerStatefulWidget {
   const PermissionSetupScreen({super.key});
@@ -42,7 +43,7 @@ class _PermissionSetupScreenState extends ConsumerState<PermissionSetupScreen> {
       appBar: AppBar(
         backgroundColor: settings.isDarkMode ? Colors.grey[900] : Colors.blue,
         title: Text(
-          '권한 설정',
+          AppLocalizations.of(context).permissionSetup,
           style: TextStyle(fontSize: settings.fontSize),
         ),
       ),
@@ -50,14 +51,14 @@ class _PermissionSetupScreenState extends ConsumerState<PermissionSetupScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           _buildInfoCard(
-            title: '권한 설정이 필요합니다',
-            description: '앱이 제대로 작동하려면 아래 권한들이 필요합니다.',
+            title: AppLocalizations.of(context).permissionRequired,
+            description: AppLocalizations.of(context).permissionRequiredDescription,
             settings: settings,
           ),
           const SizedBox(height: 24),
           _buildPermissionCard(
-            title: '다른 앱 위에 표시',
-            description: '홈 화면에서 빠르게 앱을 실행하기 위해 필요합니다.',
+            title: AppLocalizations.of(context).overlayPermission,
+            description: AppLocalizations.of(context).overlayPermissionDescription,
             isGranted: _overlayPermissionGranted,
             onRequest: () async {
               await _permissionService.requestOverlayPermission();
@@ -67,8 +68,8 @@ class _PermissionSetupScreenState extends ConsumerState<PermissionSetupScreen> {
           ),
           const SizedBox(height: 16),
           _buildPermissionCard(
-            title: '배터리 최적화 제외',
-            description: '백그라운드에서 안정적으로 실행되기 위해 필요합니다.',
+            title: AppLocalizations.of(context).batteryOptimization,
+            description: AppLocalizations.of(context).batteryOptimizationDescription,
             isGranted: _batteryOptimizationGranted,
             onRequest: () async {
               await _permissionService.requestBatteryOptimization();
@@ -88,7 +89,7 @@ class _PermissionSetupScreenState extends ConsumerState<PermissionSetupScreen> {
                 ),
               ),
               child: Text(
-                '완료',
+                AppLocalizations.of(context).complete,
                 style: TextStyle(
                   fontSize: settings.fontSize * 0.8,
                   color: Colors.white,
@@ -211,7 +212,7 @@ class _PermissionSetupScreenState extends ConsumerState<PermissionSetupScreen> {
                 ),
               ),
               child: Text(
-                '권한 설정하기',
+                AppLocalizations.of(context).setPermission,
                 style: TextStyle(
                   fontSize: settings.fontSize * 0.7,
                   color: Colors.white,

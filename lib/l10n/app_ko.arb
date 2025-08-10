@@ -1,0 +1,123 @@
+{
+  "@@locale": "ko",
+  "settings": "설정",
+  "@settings": {
+    "description": "설정 화면 제목"
+  },
+  "displaySettings": "화면 설정",
+  "@displaySettings": {
+    "description": "화면 설정 섹션 제목"
+  },
+  "fontSize": "글자 크기",
+  "@fontSize": {
+    "description": "글자 크기 설정"
+  },
+  "iconSize": "아이콘 크기",
+  "@iconSize": {
+    "description": "아이콘 크기 설정"
+  },
+  "themeSettings": "테마 설정",
+  "@themeSettings": {
+    "description": "테마 설정 섹션 제목"
+  },
+  "darkMode": "다크 모드",
+  "@darkMode": {
+    "description": "다크 모드 설정"
+  },
+  "systemSettings": "시스템 설정",
+  "@systemSettings": {
+    "description": "시스템 설정 섹션 제목"
+  },
+  "permissionSettings": "권한 설정",
+  "@permissionSettings": {
+    "description": "권한 설정 메뉴"
+  },
+  "permissionSettingsSubtitle": "오버레이 및 배터리 최적화 권한",
+  "@permissionSettingsSubtitle": {
+    "description": "권한 설정 부제목"
+  },
+  "permissionSetup": "권한 설정",
+  "@permissionSetup": {
+    "description": "권한 설정 화면 제목"
+  },
+  "permissionRequired": "권한 설정이 필요합니다",
+  "@permissionRequired": {
+    "description": "권한 필요 메시지 제목"
+  },
+  "permissionRequiredDescription": "앱이 제대로 작동하려면 아래 권한들이 필요합니다.",
+  "@permissionRequiredDescription": {
+    "description": "권한 필요 설명"
+  },
+  "overlayPermission": "다른 앱 위에 표시",
+  "@overlayPermission": {
+    "description": "오버레이 권한 제목"
+  },
+  "overlayPermissionDescription": "홈 화면에서 빠르게 앱을 실행하기 위해 필요합니다.",
+  "@overlayPermissionDescription": {
+    "description": "오버레이 권한 설명"
+  },
+  "batteryOptimization": "배터리 최적화 제외",
+  "@batteryOptimization": {
+    "description": "배터리 최적화 권한 제목"
+  },
+  "batteryOptimizationDescription": "백그라운드에서 안정적으로 실행되기 위해 필요합니다.",
+  "@batteryOptimizationDescription": {
+    "description": "배터리 최적화 권한 설명"
+  },
+  "complete": "완료",
+  "@complete": {
+    "description": "완료 버튼"
+  },
+  "setPermission": "권한 설정하기",
+  "@setPermission": {
+    "description": "권한 설정 버튼"
+  },
+  "errorOccurred": "오류가 발생했습니다",
+  "@errorOccurred": {
+    "description": "일반 오류 메시지"
+  },
+  "appManagement": "앱 관리",
+  "@appManagement": {
+    "description": "앱 관리 메뉴/화면 제목"
+  },
+  "cannotLoadAppList": "앱 목록을 불러올 수 없습니다",
+  "@cannotLoadAppList": {
+    "description": "앱 목록 로드 실패 메시지"
+  },
+  "mainScreenApps": "메인 화면 앱",
+  "@mainScreenApps": {
+    "description": "메인 화면 앱 섹션 제목"
+  },
+  "availableApps": "추가 가능한 앱",
+  "@availableApps": {
+    "description": "추가 가능한 앱 섹션 제목"
+  },
+  "noAppSelected": "선택된 앱이 없습니다",
+  "@noAppSelected": {
+    "description": "앱이 선택되지 않았을 때 메시지"
+  },
+  "phone": "전화",
+  "@phone": {
+    "description": "전화 앱 이름"
+  },
+  "messages": "메시지",
+  "@messages": {
+    "description": "메시지 앱 이름"
+  },
+  "camera": "카메라",
+  "@camera": {
+    "description": "카메라 앱 이름"
+  },
+  "gallery": "갤러리",
+  "@gallery": {
+    "description": "갤러리 앱 이름"
+  },
+  "kakaoTalk": "카카오톡",
+  "@kakaoTalk": {
+    "description": "카카오톡 앱 이름"
+  },
+  "youtube": "유튜브",
+  "@youtube": {
+    "description": "유튜브 앱 이름"
+  }
+}
