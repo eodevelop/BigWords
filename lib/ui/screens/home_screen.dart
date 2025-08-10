@@ -10,11 +10,32 @@ import '../widgets/app_icon_widget.dart';
 import 'app_management_screen.dart';
 import 'settings_screen.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // 앱 시작시 설치된 앱들의 아이콘을 캐시에 미리 로드
+    _preloadAppIcons();
+  }
+
+  Future<void> _preloadAppIcons() async {
+    try {
+      final installedApps = await ref.read(installedAppsProvider.future);
+      await ref.read(appIconCacheProvider.notifier).cacheApps(installedApps);
+    } catch (e) {
+      // 캐시 로드 실패는 무시
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final selectedApps = ref.watch(selectedAppsProvider);
     final settings = ref.watch(settingsProvider);
     
@@ -160,6 +181,7 @@ class HomeScreen extends ConsumerWidget {
       ),
     );
   }
+  
   
   void _launchApp(BuildContext context, WidgetRef ref, String packageName) async {
     final appService = getIt<AppService>();
