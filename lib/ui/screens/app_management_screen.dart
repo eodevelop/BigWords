@@ -90,6 +90,11 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
     List<installed.AppInfo> allApps,
     LauncherSettings settings,
   ) {
+    // 아이콘 캐시 업데이트
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(appIconCacheProvider.notifier).cacheApps(allApps);
+    });
+    
     final availableApps = allApps.where((app) {
       return !selectedApps.any((selected) => selected.packageName == app.packageName);
     }).toList();
@@ -120,6 +125,8 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
   }
   
   Widget _buildSelectedAppsList(LauncherSettings settings) {
+    final iconCache = ref.watch(appIconCacheProvider);
+    
     return Container(
       decoration: BoxDecoration(
         color: settings.isDarkMode ? Colors.grey[900] : Colors.grey[100],
@@ -140,6 +147,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
             )
           : Column(
               children: selectedApps.map((app) {
+                final iconData = iconCache[app.packageName];
                 return _buildAppTile(
                   app: app,
                   isSelected: true,
@@ -149,6 +157,7 @@ class _AppManagementScreenState extends ConsumerState<AppManagementScreen> {
                       selectedApps.removeWhere((a) => a.packageName == app.packageName);
                     });
                   },
+                  applicationIcon: iconData,
                 );
               }).toList(),
             ),
