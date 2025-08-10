@@ -42,11 +42,52 @@ class AppRepository {
   }
 
   Future<List<installed.AppInfo>> getAllInstalledApps() async {
-    final List<installed.AppInfo> apps = await InstalledApps.getInstalledApps(
-      true, // excludeSystemApps
-      true, // withIcon
-    );
-    return apps;
+    // 사용자 앱 가져오기
+    final List<installed.AppInfo> userApps =
+        await InstalledApps.getInstalledApps(
+          true, // excludeSystemApps
+          true, // withIcon
+        );
+
+    // 필요한 시스템 앱의 패키지명 목록
+    final systemAppPackages = [
+      'com.samsung.android.dialer',
+      'com.samsung.android.messaging',
+      'com.sec.android.app.camera',
+      'com.sec.android.gallery3d',
+      'com.google.android.youtube',
+      'com.android.chrome',  // 크롬 브라우저
+      'com.samsung.android.internet',  // 삼성 인터넷
+      'com.google.android.apps.maps',  // 구글 지도
+      'com.samsung.android.calendar',  // 삼성 캘린더
+      'com.google.android.calendar',  // 구글 캘린더
+      'com.samsung.android.contacts',  // 삼성 연락처
+      'com.google.android.contacts',  // 구글 연락처
+      'com.sec.android.app.clockpackage',  // 시계/알람
+      'com.google.android.deskclock',  // 구글 시계
+      'com.sec.android.app.weather',  // 날씨
+      'com.sec.android.daemonapp',  // 삼성 날씨
+      'com.samsung.android.app.notes',  // 삼성 노트
+      'com.samsung.android.app.reminder',  // 리마인더
+      'com.sec.android.app.calculator',  // 계산기
+      'com.google.android.calculator',  // 구글 계산기
+    ];
+
+    // 시스템 앱 포함해서 모든 앱 가져오기
+    final List<installed.AppInfo> allApps =
+        await InstalledApps.getInstalledApps(
+          false, // includeSystemApps
+          true, // withIcon
+        );
+
+    // 필요한 시스템 앱만 필터링
+    final systemApps =
+        allApps
+            .where((app) => systemAppPackages.contains(app.packageName))
+            .toList();
+
+    // 사용자 앱과 필요한 시스템 앱 합치기
+    return [...userApps, ...systemApps];
   }
 
   List<AppInfo> _getDefaultApps() {
@@ -64,16 +105,28 @@ class AppRepository {
         position: 1,
       ),
       const AppInfo(
-        packageName: 'com.kakao.talk',
-        appName: '카카오톡',
+        packageName: 'com.sec.android.app.camera',
+        appName: '카메라',
         iconPath: null,
         position: 2,
       ),
       const AppInfo(
-        packageName: 'com.sec.android.app.camera',
-        appName: '카메라',
+        packageName: 'com.sec.android.gallery3d',
+        appName: '갤러리',
         iconPath: null,
         position: 3,
+      ),
+      const AppInfo(
+        packageName: 'com.kakao.talk',
+        appName: '카카오톡',
+        iconPath: null,
+        position: 4,
+      ),
+      const AppInfo(
+        packageName: 'com.google.android.youtube',
+        appName: '유튜브',
+        iconPath: null,
+        position: 5,
       ),
     ];
   }
