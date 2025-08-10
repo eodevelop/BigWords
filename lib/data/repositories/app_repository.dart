@@ -39,7 +39,7 @@ class AppRepository {
   
   Future<List<installed.AppInfo>> getAllInstalledApps() async {
     final List<installed.AppInfo> apps = await InstalledApps.getInstalledApps(
-      true, // excludeSystemApps
+      false, // excludeSystemApps - 시스템 앱도 포함
       true, // withIcon
     );
     return apps;
