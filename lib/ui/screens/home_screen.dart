@@ -8,6 +8,7 @@ import '../../data/models/app_info.dart';
 import '../../data/models/launcher_settings.dart';
 import '../../l10n/app_localizations.dart';
 import '../widgets/app_icon_widget.dart';
+import '../widgets/date_time_display.dart';
 import 'app_management_screen.dart';
 import 'settings_screen.dart';
 
@@ -69,29 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
   
   Widget _buildStatusBar(BuildContext context, WidgetRef ref, LauncherSettings settings) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            DateTime.now().toString().split(' ')[0],
-            style: TextStyle(
-              fontSize: settings.fontSize * 0.7,
-              color: settings.isDarkMode ? Colors.white : Colors.black,
-            ),
-          ),
-          Text(
-            '${DateTime.now().hour}:${DateTime.now().minute.toString().padLeft(2, '0')}',
-            style: TextStyle(
-              fontSize: settings.fontSize,
-              fontWeight: FontWeight.bold,
-              color: settings.isDarkMode ? Colors.white : Colors.black,
-            ),
-          ),
-        ],
-      ),
-    );
+    return DateTimeDisplay(settings: settings);
   }
   
   Widget _buildAppGrid(BuildContext context, WidgetRef ref, List<AppInfo> apps, LauncherSettings settings) {
