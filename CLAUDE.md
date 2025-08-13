@@ -196,14 +196,17 @@ flutter gen-l10n         # Generate localization code from ARB files
 
 ## Code Implementation Workflow
 
-### Markdown Template-Based Development
+### ⚠️ CRITICAL: Markdown Template-Based Development
 
-When implementing new features or modifying existing code, follow this workflow:
+**THIS IS MANDATORY - NO EXCEPTIONS**
 
-#### 1. Use the temp/ Directory
-- **NEVER modify source files directly**
-- Create markdown files in the `/temp/` directory at the project root
+When implementing new features or modifying existing code, you MUST follow this workflow:
+
+#### 1. Use the temp/ Directory (MANDATORY)
+- **ABSOLUTELY NEVER modify source files directly under ANY circumstances**
+- **ALWAYS create markdown files in the `/temp/` directory** - this is NON-NEGOTIABLE
 - Each file represents ONE source file to be modified or created
+- If temp/ directory doesn't exist, create it first
 
 #### 2. File Naming Convention
 - **Existing files**: `순서숫자_filename.md`
