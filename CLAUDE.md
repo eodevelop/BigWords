@@ -193,3 +193,57 @@ flutter gen-l10n         # Generate localization code from ARB files
 - All Git operations require explicit user approval and instruction
 - Always check for conflicts with existing codebase before making changes
 - Generate prompts with focus on readability (prefer clear, simple language)
+
+## Code Implementation Workflow
+
+### Markdown Template-Based Development
+
+When implementing new features or modifying existing code, follow this workflow:
+
+#### 1. Use the temp/ Directory
+- **NEVER modify source files directly**
+- Create markdown files in the `/temp/` directory at the project root
+- Each file represents ONE source file to be modified or created
+
+#### 2. File Naming Convention
+- **Existing files**: `순서숫자_filename.md`
+- **New files**: `순서숫자_new_filename.md`
+- Examples:
+  - `1_main.md` - Modify existing main.dart
+  - `2_new_user_model.md` - Create new user_model.dart
+  - `3_home_screen.md` - Modify existing home_screen.dart
+
+#### 3. Markdown File Structure
+````markdown
+# File: lib/path/to/filename.dart
+
+## Type: [MODIFY | CREATE]
+
+## Changes Summary:
+- Brief description of what changes
+- Dependencies or prerequisites
+
+## Complete Code:
+```dart
+// Full file content with detailed step-by-step comments
+// STEP 1: Description of first change
+// STEP 2: Description of second change
+import 'package:flutter/material.dart';
+
+class Example {
+  // Complete implementation
+}
+```
+````
+
+#### 4. Documentation Requirements
+- **Complete file contents** (never snippets)
+- **STEP comments** for each modification point
+- **All imports** included (even unchanged ones)
+- **Clear path** to the actual file location
+
+#### 5. Implementation Order
+- Model/Entity classes first
+- Repository/Service classes second
+- UI/Widget classes last
+- Ensure dependency order is correct to avoid compilation errors
