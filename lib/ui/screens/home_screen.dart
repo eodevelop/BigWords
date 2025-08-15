@@ -52,6 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     
     return Scaffold(
       backgroundColor: settings.isDarkMode ? Colors.black : Colors.white,
+      extendBody: true,
       body: SafeArea(
         child: Column(
           children: [
@@ -83,26 +84,48 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
   
   Widget _buildAppGrid(BuildContext context, WidgetRef ref, List<AppInfo> apps, LauncherSettings settings) {
-    return ScrollIndicatorWidget(
-      scrollController: _scrollController,
-      settings: settings,
-      child: GridView.builder(
-        controller: _scrollController,
-        padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.8,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: settings.isDarkMode
+              ? [
+                  Colors.black,
+                  Colors.grey[900]!.withValues(alpha: 0.95),
+                ]
+              : [
+                  Colors.white,
+                  Colors.grey[50]!,
+                ],
         ),
-        itemCount: apps.length,
-        itemBuilder: (context, index) {
-          final app = apps[index];
-          return AppIconWidget(
-            appInfo: app,
-            onTap: () => _launchApp(context, ref, app.packageName),
-          );
-        },
+      ),
+      child: ScrollIndicatorWidget(
+        scrollController: _scrollController,
+        settings: settings,
+        child: GridView.builder(
+          controller: _scrollController,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.85,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+          ),
+          physics: const BouncingScrollPhysics(),
+          itemCount: apps.length,
+          itemBuilder: (context, index) {
+            final app = apps[index];
+            return AnimatedContainer(
+              duration: Duration(milliseconds: 300 + (index * 50)),
+              curve: Curves.easeOutBack,
+              child: AppIconWidget(
+                appInfo: app,
+                onTap: () => _launchApp(context, ref, app.packageName),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
