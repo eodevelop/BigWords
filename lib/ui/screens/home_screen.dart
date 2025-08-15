@@ -9,6 +9,7 @@ import '../../data/models/launcher_settings.dart';
 import '../../l10n/app_localizations.dart';
 import '../widgets/app_icon_widget.dart';
 import '../widgets/date_time_display.dart';
+import '../widgets/scroll_indicator_widget.dart';
 import 'app_management_screen.dart';
 import 'settings_screen.dart';
 
@@ -20,11 +21,19 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  final ScrollController _scrollController = ScrollController();
+  
   @override
   void initState() {
     super.initState();
     // 앱 시작시 설치된 앱들의 아이콘을 캐시에 미리 로드
     _preloadAppIcons();
+  }
+  
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   Future<void> _preloadAppIcons() async {
@@ -74,22 +83,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
   
   Widget _buildAppGrid(BuildContext context, WidgetRef ref, List<AppInfo> apps, LauncherSettings settings) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(16),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.8,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
+    return ScrollIndicatorWidget(
+      scrollController: _scrollController,
+      settings: settings,
+      child: GridView.builder(
+        controller: _scrollController,
+        padding: const EdgeInsets.all(16),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.8,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+        ),
+        itemCount: apps.length,
+        itemBuilder: (context, index) {
+          final app = apps[index];
+          return AppIconWidget(
+            appInfo: app,
+            onTap: () => _launchApp(context, ref, app.packageName),
+          );
+        },
       ),
-      itemCount: apps.length,
-      itemBuilder: (context, index) {
-        final app = apps[index];
-        return AppIconWidget(
-          appInfo: app,
-          onTap: () => _launchApp(context, ref, app.packageName),
-        );
-      },
     );
   }
   
