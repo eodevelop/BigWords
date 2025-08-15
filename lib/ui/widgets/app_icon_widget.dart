@@ -201,20 +201,11 @@ class _AppIconWidgetState extends ConsumerState<AppIconWidget>
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(18)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(18),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.white.withValues(alpha: 0.1), Colors.transparent],
-            ),
-          ),
-          child: Image.memory(
-            Uint8List.fromList(iconData),
-            fit: BoxFit.cover,
-            errorBuilder:
-                (context, error, stackTrace) => _buildDefaultIcon(settings),
-          ),
+        child: Image.memory(
+          Uint8List.fromList(iconData),
+          fit: BoxFit.cover,
+          errorBuilder:
+              (context, error, stackTrace) => _buildDefaultIcon(settings),
         ),
       ),
     );
@@ -260,20 +251,11 @@ class _AppIconWidgetState extends ConsumerState<AppIconWidget>
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(18)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(18),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.white.withValues(alpha: 0.1), Colors.transparent],
-            ),
-          ),
-          child: Image.memory(
-            iconData,
-            fit: BoxFit.cover,
-            errorBuilder:
-                (context, error, stackTrace) => _buildDefaultIcon(settings),
-          ),
+        child: Image.memory(
+          iconData,
+          fit: BoxFit.cover,
+          errorBuilder:
+              (context, error, stackTrace) => _buildDefaultIcon(settings),
         ),
       ),
     );
